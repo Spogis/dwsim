@@ -194,7 +194,7 @@ Public Class Settings
 
     Public Shared IsGTKRenderer As Boolean = False
 
-    Public Shared ConvergenceHelperEnabled As Boolean = True
+    Public Shared ConvergenceHelperEnabled As Boolean = False
 
     Public Shared ConvergenceHelperSolutionOnErrorEnabled As Boolean = True
 
