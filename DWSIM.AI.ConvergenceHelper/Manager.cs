@@ -19,6 +19,8 @@ namespace DWSIM.AI.ConvergenceHelper
 
         public static string HomeDirectory = Path.Combine(GlobalSettings.Settings.GetConfigFileDir(), "ConvergenceHelper");
 
+        public static bool Initialized = false;
+
         public static void Initialize()
         {
             if (!Directory.Exists(HomeDirectory)) { Directory.CreateDirectory(HomeDirectory); }
@@ -46,11 +48,13 @@ namespace DWSIM.AI.ConvergenceHelper
 
             FlowsheetSolver.FlowsheetSolver.FlowsheetCalculationFinished += FlowsheetSolver_FlowsheetCalculationFinished;
 
+            Initialized = true;
+
         }
 
         private static void FlowsheetSolver_FlowsheetCalculationFinished(object sender, EventArgs e, object extrainfo)
         {
-            Task.Run(() => SaveDatabaseToFile());
+           if (GlobalSettings.Settings.ConvergenceHelperEnabled) Task.Run(() => SaveDatabaseToFile());
         }
 
         public static void StoreData(ConvergenceHelperTrainingData data)

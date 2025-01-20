@@ -51,7 +51,6 @@ namespace DWSIM.UI.Desktop.Editors
         public void Init(int width, int height)
         {
 
-
             string imgprefix = "DWSIM.UI.Desktop.Editors.Resources.Icons.";
 
             Icon = Eto.Drawing.Icon.FromResource(imgprefix + "DWSIM_ico.ico");
@@ -69,7 +68,7 @@ namespace DWSIM.UI.Desktop.Editors
             if (HeaderTitle != "") topcontainer.Rows.Add(new TableRow(new Label { Text = HeaderTitle, Font = SystemFonts.Bold() }));
             if (HeaderDescription != "") topcontainer.Rows.Add(new TableRow(new Label { Text = HeaderDescription }));
 
-            var middlecontainer = new DynamicLayout {Width = 800, Height = 400 };
+            var middlecontainer = new DynamicLayout {Width = (int)(s.UIScalingFactor * 800), Height = (int)(s.UIScalingFactor * 400) };
 
             var footercontainer = new TableLayout();
 
@@ -129,14 +128,14 @@ namespace DWSIM.UI.Desktop.Editors
 
             foreach (var btn in buttons)
             {
-                if (Application.Instance.Platform.IsWinForms) btn.Height = (int)(s.UIScalingFactor * 30);
+                if (Application.Instance.Platform.IsWinForms) btn.Height = (int)(s.UIScalingFactor * 20);
                 tr.Cells.Add(btn);
             }
 
             footercontainer.Rows.Add(tr);
             footercontainer.Padding = new Padding(15);
             footercontainer.Spacing = new Size(10, 10);
-            if (Application.Instance.Platform.IsWinForms) footercontainer.Height = (int)(s.UIScalingFactor * 60);
+            if (Application.Instance.Platform.IsWinForms) footercontainer.Height = (int)(s.UIScalingFactor * 30);
 
             container.Rows.Add(new TableRow(topcontainer));
             container.Rows.Add(new TableRow(middlecontainer));

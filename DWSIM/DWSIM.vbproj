@@ -311,6 +311,12 @@
     <Reference Include="GenericDictionaryEditor">
       <HintPath>References\GenericDictionaryEditor.dll</HintPath>
     </Reference>
+    <Reference Include="GioSharp, Version=3.24.24.95, Culture=neutral, PublicKeyToken=f6892ebcc5dd81ba, processorArchitecture=MSIL">
+      <HintPath>..\packages\GioSharp.3.24.24.95\lib\netstandard2.0\GioSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="GLibSharp, Version=3.24.24.95, Culture=neutral, PublicKeyToken=f6892ebcc5dd81ba, processorArchitecture=MSIL">
+      <HintPath>..\packages\GLibSharp.3.24.24.95\lib\netstandard2.0\GLibSharp.dll</HintPath>
+    </Reference>
     <Reference Include="HtmlAgilityPack, Version=1.11.70.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
       <HintPath>..\packages\HtmlAgilityPack.1.11.70\lib\Net45\HtmlAgilityPack.dll</HintPath>
     </Reference>
@@ -2529,10 +2535,6 @@
     <ProjectReference Include="..\DWSIM.UI.Desktop.WinForms\DWSIM.UI.Desktop.WinForms.csproj">
       <Project>{a4b56ff1-995e-4288-8801-7f086668c4a2}</Project>
       <Name>DWSIM.UI.Desktop.WinForms</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DWSIM.UI.Desktop.WPF\DWSIM.UI.Desktop.WPF.csproj">
-      <Project>{2fc4816c-796d-4366-98f6-c6e3d481e66d}</Project>
-      <Name>DWSIM.UI.Desktop.WPF</Name>
     </ProjectReference>
     <ProjectReference Include="..\DWSIM.UI.Web\DWSIM.UI.Web.csproj">
       <Project>{4a48830e-c861-422a-b3e9-44311914c694}</Project>

@@ -42,7 +42,7 @@ namespace DWSIM.UI.Desktop.Editors
         private bool estimatefromunifac = true;
         private bool searchonline = false;
 
-        private bool foundkdb = false, foundchemeo = false, foundddb = false;
+        private bool foundchemeo = false;
 
         private string nf = "";
         private IUnitsOfMeasure su;
@@ -61,12 +61,6 @@ namespace DWSIM.UI.Desktop.Editors
 
         void Init()
         {
-
-            if (GlobalSettings.Settings.OldUI)
-            {
-                Width = (int)(Width * dpi);
-                Height = (int)(Height * dpi);
-            }
 
             comp.ID = new Random().Next(700000, 800000);
 
@@ -182,6 +176,11 @@ namespace DWSIM.UI.Desktop.Editors
 
             page1.ContentContainer.Content = dl;
             page1.SetFontAndPadding();
+            if (GlobalSettings.Settings.OldUI)
+            {
+                page1.Width = Width;
+                page1.Height = Height;
+            };
             page1.Show();
             c.Center(page1);
 
@@ -270,7 +269,7 @@ namespace DWSIM.UI.Desktop.Editors
                 dl.CreateAndAddEmptySpace();
                 dl.CreateAndAddEmptySpace();
                 dl.CreateAndAddCheckBoxRow("Search Online Databases for Compound Data", searchonline, (sender, e) => searchonline = sender.Checked.GetValueOrDefault());
-                dl.CreateAndAddLabelRow2("This will search selected online thermodynamic databases (KDB, Cheméo and DDB) for compound data according to its name and/or CAS ID.");
+                dl.CreateAndAddLabelRow2("This will search selected online thermodynamic databases (Cheméo) for compound data according to its name and/or CAS ID.");
             }
 
             page2.ContentContainer.Content = new Scrollable { Content = dl, Border = BorderType.None, Height = Height, Width = Width };
@@ -310,11 +309,7 @@ namespace DWSIM.UI.Desktop.Editors
             page2.Title = "Compound Creator Wizard";
             page2.HeaderTitle = "Step 3 - Compound Properties";
             page2.HeaderDescription = "Define the basic properties of the compound.";
-            if (foundkdb)
-            {
-                page2.FooterText = "DWSIM found compound data at KDB Online Database, check non-empty/non-zeroed fields.";
-            }
-            else if (foundchemeo)
+            if (foundchemeo)
             {
                 page2.FooterText = "DWSIM found compound data at Cheméo Online Database, check non-empty/non-zeroed fields.";
             }
@@ -487,14 +482,7 @@ namespace DWSIM.UI.Desktop.Editors
             page.Title = "Compound Creator Wizard";
             page.HeaderTitle = "Step 3 - UNIFAC Structure";
             page.HeaderDescription = "Enter UNIFAC structure information, if available.";
-            if (foundddb)
-            {
-                page.FooterText = "DWSIM found UNIFAC/MODFAC structure data at DDB Online Database, check non-empty/non-zeroed fields.";
-            }
-            else
-            {
-                page.FooterText = "";
-            }
+            page.FooterText = "";            
 
             page.Init(Width, Height);
 
@@ -549,11 +537,7 @@ namespace DWSIM.UI.Desktop.Editors
             page.Title = "Compound Creator Wizard";
             page.HeaderTitle = "Step 4 - Constant Properties";
             page.HeaderDescription = "Enter the required information.";
-            if (!estimatefromunifac && foundkdb)
-            {
-                page.FooterText = "DWSIM found compound data at KDB Online Database, check non-empty/non-zeroed fields.";
-            }
-            else if (!estimatefromunifac && foundchemeo)
+            if (!estimatefromunifac && foundchemeo)
             {
                 page.FooterText = "DWSIM found compound data at Cheméo Online Database, check non-empty/non-zeroed fields.";
             }
@@ -1012,7 +996,6 @@ namespace DWSIM.UI.Desktop.Editors
             page.Show();
             c.Center(page);
 
-
         }
 
         string FormatUnit(string units)
@@ -1054,22 +1037,10 @@ namespace DWSIM.UI.Desktop.Editors
             facdata = null;
 
             foundchemeo = false;
-            foundddb = false;
-            foundkdb = false;
 
             string searchterm = "";
 
             if (comp.CAS_Number != "") searchterm = comp.CAS_Number; else searchterm = comp.Name;
-
-            var t1 = Task.Factory.StartNew(() =>
-            {
-                try
-                {
-                    var cids = Thermodynamics.Databases.KDBLink.KDBParser.GetCompoundIDs(searchterm, false);
-                    kdbc = Thermodynamics.Databases.KDBLink.KDBParser.GetCompoundData(int.Parse(cids[0][0]));
-                }
-                catch { }
-            });
 
             var t2 = Task.Factory.StartNew(async () =>
             {
@@ -1081,30 +1052,9 @@ namespace DWSIM.UI.Desktop.Editors
                 catch { }
             });
 
-            Task.WaitAll(new[] { t1, t2 }, 20000);
+            Task.WaitAll(new[] { t2 }, 20000);
 
-            if (kdbc != null && chemeoc == null)
-            {
-                if (comp.Formula == "") comp.Formula = kdbc.Formula;
-                if (comp.CAS_Number == "") comp.CAS_Number = kdbc.CAS_Number;
-                comp.Molar_Weight = kdbc.Molar_Weight;
-                comp.Normal_Boiling_Point = kdbc.Normal_Boiling_Point;
-                comp.NBP = kdbc.NBP;
-                comp.TemperatureOfFusion = kdbc.TemperatureOfFusion;
-                comp.Critical_Temperature = kdbc.Critical_Temperature;
-                comp.Critical_Pressure = kdbc.Critical_Pressure;
-                comp.Critical_Volume = kdbc.Critical_Volume;
-                comp.Critical_Compressibility = kdbc.Critical_Compressibility;
-                comp.Acentric_Factor = kdbc.Acentric_Factor;
-                comp.Z_Rackett = kdbc.Z_Rackett;
-                comp.IG_Enthalpy_of_Formation_25C = kdbc.IG_Enthalpy_of_Formation_25C;
-                comp.IG_Entropy_of_Formation_25C = kdbc.IG_Entropy_of_Formation_25C;
-                comp.IG_Gibbs_Energy_of_Formation_25C = kdbc.IG_Gibbs_Energy_of_Formation_25C;
-                comp.UNIQUAC_Q = kdbc.UNIQUAC_Q;
-                comp.UNIQUAC_R = kdbc.UNIQUAC_R;
-                foundkdb = true;
-            }
-            else if (chemeoc != null)
+            if (chemeoc != null)
             {
                 if (comp.Formula == "") comp.Formula = chemeoc.Formula;
                 if (comp.CAS_Number == "") comp.CAS_Number = chemeoc.CAS_Number;
@@ -1124,41 +1074,6 @@ namespace DWSIM.UI.Desktop.Editors
                 comp.IG_Gibbs_Energy_of_Formation_25C = chemeoc.IG_Gibbs_Energy_of_Formation_25C;
                 comp.EnthalpyOfFusionAtTf = chemeoc.EnthalpyOfFusionAtTf;
                 foundchemeo = true;
-            }
-
-
-            try
-            {
-                var cid = Thermodynamics.Databases.DDBStructureLink.DDBStructureParser.GetID(comp.CAS_Number);
-                facdata = Thermodynamics.Databases.DDBStructureLink.DDBStructureParser.GetData(cid);
-            }
-            catch { }
-
-            if (facdata != null)
-            {
-                foundddb = true;
-                if (facdata.ContainsKey("Original"))
-                {
-                    comp.UNIFACGroups = new System.Collections.SortedList();
-                    comp.UNIFACGroups.Clear();
-                    foreach (var item in facdata["Original"])
-                    {
-                        comp.UNIFACGroups.Add(item[1], item[2]);
-                    }
-                }
-                if (facdata.ContainsKey("Modified"))
-                {
-                    comp.MODFACGroups = new System.Collections.SortedList();
-                    comp.MODFACGroups.Clear();
-                    comp.NISTMODFACGroups = new System.Collections.SortedList();
-                    comp.NISTMODFACGroups.Clear();
-                    foreach (var item in facdata["Modified"])
-                    {
-                        comp.MODFACGroups.Add(item[1], item[2]);
-                        comp.NISTMODFACGroups.Add(item[1], item[2]);
-                    }
-                }
-
             }
 
         }

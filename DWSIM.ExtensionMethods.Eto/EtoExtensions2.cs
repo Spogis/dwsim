@@ -221,9 +221,13 @@ namespace DWSIM.ExtensionMethods.Eto
         /// <returns></returns>
         public static IEnumerable<Control> GetAllChildren(Control control)
         {
-            var controls = control.VisualControls;
-            if (control is Panel) controls = ((Panel)control).Controls;
-            if (control is DocumentControl) controls = ((DocumentControl)control).Pages;
+            var controls = control.VisualControls.Cast<Control>();
+            if (control is Panel) controls = ((Panel)control).Controls.Cast<Control>();
+            if (control is DocumentControl) controls = ((DocumentControl)control).Pages.Cast<Control>();
+            if (control is Form) controls = ((Form)control).Children.Cast<Control>();
+            if (control is Layout) controls = ((Layout)control).Children.Cast<Control>();
+            if (control is DynamicLayout) controls = ((DynamicLayout)control).Content.VisualControls.Cast<Control>();
+            if (control is Scrollable) controls = ((Scrollable)control).Content.VisualControls.Cast<Control>();
             return controls.SelectMany(ctrl => GetAllChildren(ctrl)).Concat(controls);
         }
 
@@ -234,7 +238,7 @@ namespace DWSIM.ExtensionMethods.Eto
         public static void SetFontAndPadding(this Form form)
         {
 
-            var sysfont = global::Eto.Drawing.SystemFonts.Default();
+            var sysfont = global::Eto.Drawing.SystemFonts.Message();
             var regularfont = new Font(sysfont.Family.Name, sysfont.Size);
             var boldfont = new Font(sysfont.Family.Name, sysfont.Size, FontStyle.Bold);
 
