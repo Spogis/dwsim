@@ -630,6 +630,13 @@ Public Module General
     End Function
 
     <System.Runtime.CompilerServices.Extension()>
+    Public Function ToString(vector As Double(), numberformat As String) As String()
+
+        Return vector.Select(Function(d) d.ToString(numberformat, CultureInfo.InvariantCulture)).ToArray()
+
+    End Function
+
+    <System.Runtime.CompilerServices.Extension()>
     Public Sub PasteData(dgv As DataGridView, Optional ByVal addnewline As Boolean = True)
 
         PasteData2(dgv, Clipboard.GetText(), addnewline)

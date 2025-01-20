@@ -28,6 +28,7 @@ Imports DotNumerics.Optimization
 Imports DotNumerics.Scaling
 Imports DWSIM.UnitOperations.Streams
 Imports DWSIM.ExtensionMethods
+Imports System.Globalization
 
 Namespace Reactors
 
@@ -1607,16 +1608,26 @@ Namespace Reactors
                 If ReactorOperationMode = OperationMode.Adiabatic Then
                     AI.ConvergenceHelper.Manager.StoreData(
                     New AI.ConvergenceHelper.ConvergenceHelperTrainingData With {
-                        .CompoundNames = pp.RET_VNAMES(), .ModelName = pp.ComponentName, .NumberOfCompounds = N.Count,
-                        .Temperature = T0, .Temperature2 = T, .Pressure = P, .MixtureMolarFlows = N0.Values.ToArray().ToSingle(),
-                        .MixtureMolarFlows2 = N.Values.ToArray().ToSingle(),
+                        .CompoundNames = pp.RET_VNAMES(),
+                        .ModelName = pp.ComponentName,
+                        .NumberOfCompounds = N.Count,
+                        .Temperature = T0.ToString("N4", CultureInfo.InvariantCulture),
+                        .Temperature2 = T.ToString("N4", CultureInfo.InvariantCulture),
+                        .Pressure = P.ToString("N4", CultureInfo.InvariantCulture),
+                        .MixtureMolarFlows = N0.Values.ToArray().ToString("N4"),
+                        .MixtureMolarFlows2 = N.Values.ToArray().ToString("N4"),
                         .RequestType = Interfaces.ConvergenceHelperRequestType.EquilibriumReactorAdiabatic})
                 Else
                     AI.ConvergenceHelper.Manager.StoreData(
                       New AI.ConvergenceHelper.ConvergenceHelperTrainingData With {
-                        .CompoundNames = pp.RET_VNAMES(), .ModelName = pp.ComponentName, .NumberOfCompounds = N.Count,
-                        .Temperature = T0, .Temperature2 = T, .Pressure = P, .MixtureMolarFlows = N0.Values.ToArray().ToSingle(),
-                        .MixtureMolarFlows2 = N.Values.ToArray().ToSingle(),
+                        .CompoundNames = pp.RET_VNAMES(),
+                        .ModelName = pp.ComponentName,
+                        .NumberOfCompounds = N.Count,
+                        .Temperature = T0.ToString("N4", CultureInfo.InvariantCulture),
+                        .Temperature2 = T.ToString("N4", CultureInfo.InvariantCulture),
+                        .Pressure = P.ToString("N4", CultureInfo.InvariantCulture),
+                        .MixtureMolarFlows = N0.Values.ToArray().ToString("N4"),
+                        .MixtureMolarFlows2 = N.Values.ToArray().ToString("N4"),
                         .RequestType = Interfaces.ConvergenceHelperRequestType.EquilibriumReactorIsothermic})
                 End If
             End If

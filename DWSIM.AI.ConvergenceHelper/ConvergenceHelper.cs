@@ -24,22 +24,31 @@ namespace DWSIM.AI.ConvergenceHelper
     {
         public ConvergenceHelperRequestType RequestType { get; set; }
         public string ModelName { get; set; }
+        public string Hash { get; set; }
         public int NumberOfCompounds { get; set; }
         public string[] CompoundNames { get; set; }
-        public float? Temperature { get; set; }
-        public float? Temperature2 { get; set; }
-        public float? Pressure { get; set; }
-        public float? MassEnthalpy { get; set; }
-        public float? MassEntropy { get; set; }
-        public float? VaporMolarFraction { get; set; }
-        public float[] MixtureMolarFlows { get; set; }
-        public float[] MixtureMolarFlows2 { get; set; }
-        public float[] VaporMolarFlows { get; set; }
-        public float[] Liquid1MolarFlows { get; set; }
-        public float[] Liquid2MolarFlows { get; set; }
-        public float[] SolidMolarFlows { get; set; }
-        public float[] KValuesVL1 { get; set; }
-        public float[] KValuesVL2 { get; set; }
+        public string Temperature { get; set; }
+        public string Temperature2 { get; set; }
+        public string Pressure { get; set; }
+        public string MassEnthalpy { get; set; }
+        public string MassEntropy { get; set; }
+        public string VaporMolarFraction { get; set; }
+        public string[] MixtureMolarFlows { get; set; }
+        public string[] MixtureMolarFlows2 { get; set; }
+        public string[] VaporMolarFlows { get; set; }
+        public string[] Liquid1MolarFlows { get; set; }
+        public string[] Liquid2MolarFlows { get; set; }
+        public string[] SolidMolarFlows { get; set; }
+        public string[] KValuesVL1 { get; set; }
+        public string[] KValuesVL2 { get; set; }
+
+        public string GetBase64StringHash()
+        {
+            var options = new Newtonsoft.Json.JsonSerializerSettings();
+            var jsondata = Newtonsoft.Json.JsonConvert.SerializeObject(this);
+            var plainTextBytes = System.Text.Encoding.UTF8.GetBytes(jsondata);
+            return Convert.ToBase64String(plainTextBytes);
+        }
     }
 
     public class ConvergenceHelperRequest : IConvergenceHelperRequest

@@ -19,33 +19,33 @@ Public Interface IConvergenceHelperTrainingData
 
     Property CompoundNames As String()
 
-    Property Temperature As Single?
+    Property Temperature As String
 
-    Property Temperature2 As Single?
+    Property Temperature2 As String
 
-    Property Pressure As Single?
+    Property Pressure As String
 
-    Property MassEnthalpy As Single?
+    Property MassEnthalpy As String
 
-    Property MassEntropy As Single?
+    Property MassEntropy As String
 
-    Property VaporMolarFraction As Single?
+    Property VaporMolarFraction As String
 
-    Property MixtureMolarFlows As Single()
+    Property MixtureMolarFlows As String()
 
-    Property MixtureMolarFlows2 As Single()
+    Property MixtureMolarFlows2 As String()
 
-    Property VaporMolarFlows As Single()
+    Property VaporMolarFlows As String()
 
-    Property Liquid1MolarFlows As Single()
+    Property Liquid1MolarFlows As String()
 
-    Property Liquid2MolarFlows As Single()
+    Property Liquid2MolarFlows As String()
 
-    Property SolidMolarFlows As Single()
+    Property SolidMolarFlows As String()
 
-    Property KValuesVL1 As Single()
+    Property KValuesVL1 As String()
 
-    Property KValuesVL2 As Single()
+    Property KValuesVL2 As String()
 
 End Interface
 

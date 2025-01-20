@@ -30,6 +30,7 @@ Imports DWSIM.Thermodynamics.Streams
 Imports DWSIM.Thermodynamics
 Imports scaler = DotNumerics.Scaling.Scaler
 Imports DWSIM.MathOps
+Imports System.Globalization
 
 Namespace Reactors
 
@@ -1595,16 +1596,24 @@ Namespace Reactors
                 If ReactorOperationMode = OperationMode.Adiabatic Then
                     AI.ConvergenceHelper.Manager.StoreData(
                     New AI.ConvergenceHelper.ConvergenceHelperTrainingData With {
-                        .CompoundNames = pp.RET_VNAMES(), .ModelName = pp.ComponentName, .NumberOfCompounds = Ki.Count,
-                        .Temperature = T0, .Temperature2 = T, .Pressure = P, .MixtureMolarFlows = N0.Values.ToArray().ToSingle(),
-                        .MixtureMolarFlows2 = N.Values.ToArray().ToSingle(),
+                        .CompoundNames = pp.RET_VNAMES(), .ModelName = pp.ComponentName,
+                        .NumberOfCompounds = Ki.Count,
+                        .Temperature = T0.ToString("N4", CultureInfo.InvariantCulture),
+                        .Temperature2 = T.ToString("N4", CultureInfo.InvariantCulture),
+                        .Pressure = P.ToString("N4", CultureInfo.InvariantCulture),
+                        .MixtureMolarFlows = N0.Values.ToArray().ToString("N4"),
+                        .MixtureMolarFlows2 = N.Values.ToArray().ToString("N4"),
                         .RequestType = Interfaces.ConvergenceHelperRequestType.GibbsReactorAdiabatic})
                 Else
                     AI.ConvergenceHelper.Manager.StoreData(
                       New AI.ConvergenceHelper.ConvergenceHelperTrainingData With {
-                        .CompoundNames = pp.RET_VNAMES(), .ModelName = pp.ComponentName, .NumberOfCompounds = Ki.Count,
-                        .Temperature = T0, .Temperature2 = T, .Pressure = P, .MixtureMolarFlows = N0.Values.ToArray().ToSingle(),
-                        .MixtureMolarFlows2 = N.Values.ToArray().ToSingle(),
+                        .CompoundNames = pp.RET_VNAMES(), .ModelName = pp.ComponentName,
+                        .NumberOfCompounds = Ki.Count,
+                        .Temperature = T0.ToString("N4", CultureInfo.InvariantCulture),
+                        .Temperature2 = T.ToString("N4", CultureInfo.InvariantCulture),
+                        .Pressure = P.ToString("N4", CultureInfo.InvariantCulture),
+                        .MixtureMolarFlows = N0.Values.ToArray().ToString("N4"),
+                        .MixtureMolarFlows2 = N.Values.ToArray().ToString("N4"),
                         .RequestType = Interfaces.ConvergenceHelperRequestType.GibbsReactorIsothermic})
                 End If
             End If
@@ -2454,16 +2463,26 @@ Namespace Reactors
                 If ReactorOperationMode = OperationMode.Adiabatic Then
                     AI.ConvergenceHelper.Manager.StoreData(
                     New AI.ConvergenceHelper.ConvergenceHelperTrainingData With {
-                        .CompoundNames = pp.RET_VNAMES(), .ModelName = pp.ComponentName, .NumberOfCompounds = N.Count,
-                        .Temperature = T0, .Temperature2 = T, .Pressure = P, .MixtureMolarFlows = N0.Values.ToArray().ToSingle(),
-                        .MixtureMolarFlows2 = N.Values.ToArray().ToSingle(),
+                        .CompoundNames = pp.RET_VNAMES(),
+                        .ModelName = pp.ComponentName,
+                        .NumberOfCompounds = N.Count,
+                        .Temperature = T0.ToString("N4", CultureInfo.InvariantCulture),
+                        .Temperature2 = T.ToString("N4", CultureInfo.InvariantCulture),
+                        .Pressure = P.ToString("N4", CultureInfo.InvariantCulture),
+                        .MixtureMolarFlows = N0.Values.ToArray().ToString("N4"),
+                        .MixtureMolarFlows2 = N.Values.ToArray().ToString("N4"),
                         .RequestType = Interfaces.ConvergenceHelperRequestType.GibbsReactorAdiabatic})
                 Else
                     AI.ConvergenceHelper.Manager.StoreData(
                       New AI.ConvergenceHelper.ConvergenceHelperTrainingData With {
-                        .CompoundNames = pp.RET_VNAMES(), .ModelName = pp.ComponentName, .NumberOfCompounds = N.Count,
-                        .Temperature = T0, .Temperature2 = T, .Pressure = P, .MixtureMolarFlows = N0.Values.ToArray().ToSingle(),
-                        .MixtureMolarFlows2 = N.Values.ToArray().ToSingle(),
+                        .CompoundNames = pp.RET_VNAMES(),
+                        .ModelName = pp.ComponentName,
+                        .NumberOfCompounds = N.Count,
+                        .Temperature = T0.ToString("N4", CultureInfo.InvariantCulture),
+                        .Temperature2 = T.ToString("N4", CultureInfo.InvariantCulture),
+                        .Pressure = P.ToString("N4", CultureInfo.InvariantCulture),
+                        .MixtureMolarFlows = N0.Values.ToArray().ToString("N4"),
+                        .MixtureMolarFlows2 = N.Values.ToArray().ToString("N4"),
                         .RequestType = Interfaces.ConvergenceHelperRequestType.GibbsReactorIsothermic})
                 End If
             End If
