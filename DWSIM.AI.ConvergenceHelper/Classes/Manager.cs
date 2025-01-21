@@ -19,6 +19,8 @@ namespace DWSIM.AI.ConvergenceHelper
 
         public static string HomeDirectory = Path.Combine(GlobalSettings.Settings.GetConfigFileDir(), "ConvergenceHelper");
 
+        public static List<ConvergenceHelperMetaData> ModelsSummary = new List<ConvergenceHelperMetaData>();
+
         public static bool Initialized = false;
 
         public static void Initialize()
@@ -46,6 +48,17 @@ namespace DWSIM.AI.ConvergenceHelper
                 File.Delete(dbfile2);
             }
 
+            var msfile = Path.Combine(modelsdir, "summary.json");
+            if (!File.Exists(msfile))
+            {
+                var data = Newtonsoft.Json.JsonConvert.SerializeObject(ModelsSummary);
+                File.WriteAllText(msfile, data);
+            }
+            else
+            {
+                ModelsSummary = Newtonsoft.Json.JsonConvert.DeserializeObject<List<ConvergenceHelperMetaData>>(File.ReadAllText(msfile));
+            }
+
             FlowsheetSolver.FlowsheetSolver.FlowsheetCalculationFinished += FlowsheetSolver_FlowsheetCalculationFinished;
 
             Initialized = true;
@@ -54,7 +67,15 @@ namespace DWSIM.AI.ConvergenceHelper
 
         private static void FlowsheetSolver_FlowsheetCalculationFinished(object sender, EventArgs e, object extrainfo)
         {
-           if (GlobalSettings.Settings.ConvergenceHelperEnabled) Task.Run(() => SaveDatabaseToFile());
+            if (GlobalSettings.Settings.ConvergenceHelperEnabled) { 
+                Task.Run(() => SaveDatabaseToFile());
+                UpdateModels();
+            }
+        }
+
+        private static void UpdateModels()
+        { 
+        
         }
 
         public static void StoreData(ConvergenceHelperTrainingData data)

@@ -997,7 +997,6 @@ Partial Class FormMain
     Friend WithEvents ToolStripStatusLabel2 As ToolStripStatusLabel
     Public WithEvents StatusStrip1 As StatusStrip
     Friend WithEvents WhatsNewToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents tsmiPrivateSupport As ToolStripMenuItem
     Public WithEvents tsbQuickQuestion As ToolStripDropDownButton
     Friend WithEvents UsersGuideToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents tsmiProUG As ToolStripMenuItem
@@ -1007,4 +1006,5 @@ Partial Class FormMain
     Public WithEvents tsmiNewCompoundCreatorStudy As ToolStripMenuItem
     Friend WithEvents ToolStripSeparator5 As ToolStripSeparator
     Public WithEvents tsbAutoSave As ToolStripButton
+    Public WithEvents tsmiPrivateSupport As ToolStripMenuItem
 End Class
