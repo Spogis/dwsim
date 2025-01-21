@@ -33,7 +33,7 @@ namespace DWSIM.AI.ConvergenceHelper.Forms
             var c3 = ext.GetDefaultContainer();
             c3.Tag = "Data";
 
-            var form = Extensions2.GetTabbedForm("AI Convergence Helper Manager", 1024, 768, new DynamicLayout[] { c1, c2, c3 });
+            var form = Extensions2.GetTabbedForm("AI Convergence Helper Manager", 800, 600, new DynamicLayout[] { c1, c2, c3 });
             form.SetFontAndPadding();
             form.Show();
             form.Center();

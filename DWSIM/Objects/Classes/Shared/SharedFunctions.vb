@@ -31,6 +31,7 @@ Namespace DWSIM
             If Not GlobalSettings.Settings.AutomationMode Then
                 'initialize Eto.Forms
                 Dim platform As New Eto.WinForms.Platform()
+                UI.Desktop.WinForms.StyleSetter.SetStyles()
                 platform.Add(Of Eto.Forms.Controls.Scintilla.Shared.ScintillaControl.IScintillaControl)(Function() New Eto.Forms.Controls.Scintilla.WinForms.ScintillaControlHandler())
                 platform.Add(Of Global.DWSIM.UI.Controls.FlowsheetSurfaceControl.IFlowsheetSurface)(Function() New Global.DWSIM.UI.Desktop.WinForms.FlowsheetSurfaceControlHandler())
                 platform.Add(Of Eto.OxyPlot.Plot.IHandler)(Function() New Eto.OxyPlot.WinForms.PlotHandler())

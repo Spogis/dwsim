@@ -252,6 +252,15 @@ namespace DWSIM.ExtensionMethods.Eto
                         ((CommonControl)control).Font = regularfont;
                     }
                 }
+                if (control is TextBox)
+                {
+                    var tb = (TextBox)control;
+                    var d = 0.0;
+                    if (Double.TryParse(tb.Text, out d))
+                    {
+                        tb.TextAlignment = TextAlignment.Right;
+                    }
+                }
                 else if (control is TableLayout)
                 {
                     ((TableLayout)control).Padding = new Padding((int)(2 * GlobalSettings.Settings.DpiScale));

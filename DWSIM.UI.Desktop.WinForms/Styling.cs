@@ -39,6 +39,12 @@ namespace DWSIM.UI.Desktop.WinForms
                 tbox.TextAlign = HorizontalAlignment.Right;
             });
 
+            Eto.Style.Add<Eto.Forms.TabControl>("tabcontrol", control =>
+            {
+                var tab = (System.Windows.Forms.TabControl)control.ControlObject;
+                tab.Font = System.Drawing.SystemFonts.MessageBoxFont;
+            });
+
             Eto.Style.Add<Eto.Forms.GridView>("spreadsheet", control =>
             {
                 var grid = (System.Windows.Forms.DataGridView)control.ControlObject;
