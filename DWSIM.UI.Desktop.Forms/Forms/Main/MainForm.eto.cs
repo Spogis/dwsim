@@ -601,9 +601,9 @@ namespace DWSIM.UI
                 //}
                 var splash = new SplashScreen { MainFrm = this };
                 splash.Show();
-                splash.Center();
+                DWSIM.UI.Shared.Common.Center(splash);
             });
-            this.Center();
+            DWSIM.UI.Shared.Common.Center(this);
 
         }
 

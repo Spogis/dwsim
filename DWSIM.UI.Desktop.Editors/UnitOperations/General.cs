@@ -1100,7 +1100,7 @@ namespace DWSIM.UI.Desktop.Editors
                                 editor.Save();
                             });
                         };
-                        form.Center();
+                        DWSIM.UI.Shared.Common.Center(form);
                         form.Show();
                     });
                     break;
@@ -1789,7 +1789,7 @@ namespace DWSIM.UI.Desktop.Editors
                     {
                         var editor = new Editors.UnitOperations.ElementMatrixEditor(reactor2g);
                         var form = s.GetDefaultEditorForm("Element Matrix Editor", 600, 300, editor, false);
-                        form.Center();
+                        DWSIM.UI.Shared.Common.Center(form);
                         form.Show();
                     });
                     s.CreateAndAddLabelRow(container, "Convergence Parameters");

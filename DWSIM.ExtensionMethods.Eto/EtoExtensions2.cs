@@ -56,15 +56,6 @@ namespace DWSIM.ExtensionMethods.Eto
         }
 
         /// <summary>
-        /// Centers the form on the screen.
-        /// </summary>
-        /// <param name="form">Form (window)</param>
-        public static void Center(this Form form)
-        {
-            Common.Center(form);
-        }
-
-        /// <summary>
         /// Gets the standard control container (DynamicLayout)
         /// </summary>
         /// <returns></returns>
@@ -222,12 +213,16 @@ namespace DWSIM.ExtensionMethods.Eto
         public static IEnumerable<Control> GetAllChildren(Control control)
         {
             var controls = control.VisualControls.Cast<Control>();
-            if (control is Panel) controls = ((Panel)control).Controls.Cast<Control>();
-            if (control is DocumentControl) controls = ((DocumentControl)control).Pages.Cast<Control>();
-            if (control is Form) controls = ((Form)control).Children.Cast<Control>();
-            if (control is Layout) controls = ((Layout)control).Children.Cast<Control>();
-            if (control is DynamicLayout) controls = ((DynamicLayout)control).Content.VisualControls.Cast<Control>();
-            if (control is Scrollable) controls = ((Scrollable)control).Content.VisualControls.Cast<Control>();
+            try
+            {
+                if (control is Panel) controls = ((Panel)control).Controls.Cast<Control>();
+                if (control is DocumentControl) controls = ((DocumentControl)control).Pages.Cast<Control>();
+                if (control is Form) controls = ((Form)control).Children.Cast<Control>();
+                if (control is Layout) controls = ((Layout)control).Children.Cast<Control>();
+                if (control is DynamicLayout) controls = ((DynamicLayout)control).Content.VisualControls.Cast<Control>();
+                if (control is Scrollable) controls = ((Scrollable)control).Content.VisualControls.Cast<Control>();
+            }
+            catch { }
             return controls.SelectMany(ctrl => GetAllChildren(ctrl)).Concat(controls);
         }
 

@@ -65,6 +65,8 @@ Namespace GraphicObjects.Tables
 
             Dim sf = s.UIScalingFactor
 
+            If s.OldUI Then sf = 1.0
+
             Dim canvas As SKCanvas = DirectCast(g, SKCanvas)
 
             FontSize = 11.0

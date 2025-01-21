@@ -5845,6 +5845,12 @@ Public Class FormFlowsheet
 
     End Sub
 
+    Private Sub ConvergenceHelperSettingsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ConvergenceHelperSettingsToolStripMenuItem.Click
+
+        AI.ConvergenceHelper.Forms.ManagerForm.DisplayConfigForm()
+
+    End Sub
+
     Public Sub UpdateMassAndEnergyBalance() Implements IFlowsheet.UpdateMassAndEnergyBalance
 
         Dim equipments = SimulationObjects.Values.Where(Function(o) TypeOf o Is UnitOpBaseClass And TypeOf o IsNot IIndicator)

@@ -124,16 +124,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConvergenceHelper.cs" />
-    <Compile Include="Manager.cs" />
+    <Compile Include="Classes\ConvergenceHelper.cs" />
+    <Compile Include="Classes\Manager.cs" />
+    <Compile Include="Classes\TrainModel.cs" />
+    <Compile Include="Forms\ManagerForm.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TrainModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DWSIM.ExtensionMethods.Eto\DWSIM.ExtensionMethods.Eto.csproj">
+      <Project>{5ba7546b-010c-4197-975e-f462bbea1ec4}</Project>
+      <Name>DWSIM.ExtensionMethods.Eto</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\DWSIM.ExtensionMethods\DWSIM.ExtensionMethods.vbproj">
+      <Project>{1e12c010-2661-4896-9c00-90f8b41ed10a}</Project>
+      <Name>DWSIM.ExtensionMethods</Name>
+      <Private>False</Private>
+    </ProjectReference>
     <ProjectReference Include="..\DWSIM.FileStorage\DWSIM.FileStorage.csproj">
       <Project>{13823753-2284-4d3e-aeb4-ca72118ef094}</Project>
       <Name>DWSIM.FileStorage</Name>
@@ -154,6 +165,9 @@
       <Name>DWSIM.Interfaces</Name>
       <Private>False</Private>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Icons\machine_learning_64px.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

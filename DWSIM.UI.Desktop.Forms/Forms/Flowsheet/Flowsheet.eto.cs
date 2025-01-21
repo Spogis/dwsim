@@ -839,11 +839,6 @@ namespace DWSIM.UI.Forms
                                 f.Show();
                                 f.Center();
                             }
-                            else
-                            {
-                                System.Windows.Forms.Form f = (System.Windows.Forms.Form)iplugin.UtilityForm;
-                                f.Show();
-                            }
                         });
                     };
                     pluginbuttons.Add(tsmi);

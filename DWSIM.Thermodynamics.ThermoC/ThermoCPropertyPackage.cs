@@ -146,7 +146,7 @@ namespace DWSIM.Thermodynamics.ThermoC
         {
             var f = GetForm();
             f.Show();
-            f.Center();
+            DWSIM.UI.Shared.Common.Center(f);
         }
 
         public Eto.Forms.Form GetForm()

@@ -3408,6 +3408,7 @@
     <None Include="Resources\input_80px.png" />
     <None Include="Resources\icons8-documents.png" />
     <None Include="Resources\Graph Report_96px.png" />
+    <None Include="Resources\machine_learning_64px.png" />
     <Content Include="Resources\ru.png" />
     <None Include="Resources\zoom.png" />
     <None Include="Resources\Services.png" />

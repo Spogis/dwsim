@@ -143,7 +143,7 @@ namespace DWSIM.UI.Desktop.Editors
                                                                         cont2.Tag = "Interaction Parameters";
                                                                         var form = s.GetDefaultTabbedForm("Edit '" + pp.Tag + "' (" + pp.ComponentName + ")", 800, 500, new DynamicLayout[] { cont2, cont3, cont, advcont[0], advcont[1] });
                                                                         form.Show();
-                                                                        form.Center();
+                                                                        DWSIM.UI.Shared.Common.Center(form);
                                                                     }
                                                                     else
                                                                     {
@@ -161,14 +161,14 @@ namespace DWSIM.UI.Desktop.Editors
                                                                             var dynlay1 = new DynamicLayout[] { dyn1, cont3, cont, advcont[0], advcont[1] };
                                                                             var form = s.GetDefaultTabbedForm("Edit '" + pp.Tag + "' (" + pp.ComponentName + ")", 800, 500, dynlay1);
                                                                             form.Show();
-                                                                            form.Center();
+                                                                            DWSIM.UI.Shared.Common.Center(form);
                                                                         }
                                                                         else
                                                                         {
                                                                             var dynlay1 = new DynamicLayout[] { cont3, cont, advcont[0], advcont[1] };
                                                                             var form = s.GetDefaultTabbedForm("Edit '" + pp.Tag + "' (" + pp.ComponentName + ")", 800, 500, dynlay1);
                                                                             form.Show();
-                                                                            form.Center();
+                                                                            DWSIM.UI.Shared.Common.Center(form);
                                                                         }
                                                                     }
                                                                 },

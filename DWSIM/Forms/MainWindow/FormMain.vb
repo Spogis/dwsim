@@ -129,7 +129,6 @@ Public Class FormMain
             Settings.DpiScale = g1.DpiX / 96.0
 
             Settings.UIScalingFactor = Settings.DpiScale
-
             Me.ToolStrip1.AutoSize = False
             Me.ToolStrip1.ImageScalingSize = New Size(20 * Settings.DpiScale, 20 * Settings.DpiScale)
             Me.MenuStrip1.ImageScalingSize = New Size(20 * Settings.DpiScale, 20 * Settings.DpiScale)
