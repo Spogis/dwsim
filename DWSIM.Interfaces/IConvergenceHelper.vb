@@ -117,6 +117,8 @@ Public Interface IConvergenceHelperMetaData
 
     Property ModelName As String
 
+    Property NumberOfSamples As Integer
+
     Property NumberOfCompounds As Integer
 
     Property CompoundNames As String()

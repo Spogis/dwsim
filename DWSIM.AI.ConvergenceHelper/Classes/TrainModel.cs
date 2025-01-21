@@ -1,31 +1,26 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using Microsoft.ML;
 
 namespace DWSIM.AI.ConvergenceHelper
 {
-    class Program
+    public static class ModelTrainer
     {
-        static readonly string _trainDataPath = Path.Combine(Environment.CurrentDirectory, "Data", "taxi-fare-train.csv");
-        static readonly string _testDataPath = Path.Combine(Environment.CurrentDirectory, "Data", "taxi-fare-test.csv");
-        static readonly string _modelPath = Path.Combine(Environment.CurrentDirectory, "Data", "Model.zip");
+
+        private static MLContext mlContext;
        
-        static void Main(string[] args)
+        public static void Initialize()
         {
-            Console.WriteLine(Environment.CurrentDirectory);
 
-            MLContext mlContext = new MLContext(seed: 0);
+            mlContext = new MLContext(seed: 0);
 
-            var model = Train(mlContext, _trainDataPath);
-
-            Evaluate(mlContext, model);
-
-            TestSinglePrediction(mlContext, model);
         }
 
-        public static ITransformer Train(MLContext mlContext, string dataPath)
+        public static ITransformer Train(MLContext mlContext, List<ConvergenceHelperTrainingData> data)
         {
-            IDataView dataView = mlContext.Data.LoadFromTextFile<ConvergenceHelperTrainingData>(dataPath, hasHeader: true, separatorChar: ',');
+
+            IDataView dataView = mlContext.Data.LoadFromEnumerable(data);
          
             var pipeline = mlContext.Transforms.CopyColumns(outputColumnName: "Label", inputColumnName: "FareAmount")
                     .Append(mlContext.Transforms.Categorical.OneHotEncoding(outputColumnName: "VendorIdEncoded", inputColumnName: "VendorId"))
@@ -34,21 +29,16 @@ namespace DWSIM.AI.ConvergenceHelper
                     .Append(mlContext.Transforms.Concatenate("Features", "VendorIdEncoded", "RateCodeEncoded", "PassengerCount", "TripDistance", "PaymentTypeEncoded"))
                     .Append(mlContext.Regression.Trainers.OnlineGradientDescent());
      
-            Console.WriteLine("=============== Create and Train the Model ===============");
-
             var model = pipeline.Fit(dataView);
-
-            Console.WriteLine("=============== End of training ===============");
-            Console.WriteLine();
 
             return model;
         }
 
-        private static void Evaluate(MLContext mlContext, ITransformer model)
+        public static void Evaluate(MLContext mlContext, ITransformer model, List<ConvergenceHelperTrainingData> data)
         {
-           
-            IDataView dataView = mlContext.Data.LoadFromTextFile<ConvergenceHelperTrainingData>(_testDataPath, hasHeader: true, separatorChar: ',');
-          
+
+            IDataView dataView = mlContext.Data.LoadFromEnumerable(data);
+
             var predictions = model.Transform(dataView);
             var metrics = mlContext.Regression.Evaluate(predictions, "Label", "Score");
          
@@ -61,7 +51,7 @@ namespace DWSIM.AI.ConvergenceHelper
             Console.WriteLine($"*************************************************");
         }
 
-        private static void TestSinglePrediction(MLContext mlContext, ITransformer model)
+        public static void TestSinglePrediction(MLContext mlContext, ITransformer model)
         {
             //var predictionFunction = mlContext.Model.CreatePredictionEngine<ConvergenceHelperTrainingData, TaxiTripFarePrediction>(model);
                       

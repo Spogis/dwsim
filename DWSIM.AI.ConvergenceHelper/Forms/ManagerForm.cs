@@ -46,7 +46,5 @@ namespace DWSIM.AI.ConvergenceHelper.Forms
 
         }
 
-
-
     }
 }

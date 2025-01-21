@@ -91,6 +91,7 @@ namespace DWSIM.AI.ConvergenceHelper
     {
         public string ModelName { get; set; } = "";
         public int NumberOfCompounds { get; set; }
+        public int NumberOfSamples { get; set; }
         public string[] CompoundNames { get; set; }
         public Tuple<double, double> TemperatureRange { get; set; }
         public Tuple<double, double> PressureRange { get; set; }
