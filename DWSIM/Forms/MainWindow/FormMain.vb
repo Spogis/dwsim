@@ -5084,7 +5084,7 @@ Label_00CC:
         frm.Show()
     End Sub
 
-    Private Sub tsmiPrivateSupport_Click(sender As Object, e As EventArgs) Handles tsmiPrivateSupport.Click
+    Private Sub tsmiPrivateSupport_Click(sender As Object, e As EventArgs)
         Process.Start("https://simulate365.com/private-support/")
     End Sub
 
