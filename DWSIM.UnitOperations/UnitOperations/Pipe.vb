@@ -759,8 +759,10 @@ Namespace UnitOperations
                                                 Else
                                                     SR = ThermalProfile.SolarRadiationAbsorptionEfficiency * ThermalProfile.SolarRadiationValue_kWh_m2
                                                 End If
-                                                DQ += SR / 24.0 * .Comprimento / .Incrementos * .DE * 0.0254 / 2
-                                                DQmax += SR / 24.0 * .Comprimento / .Incrementos * .DE * 0.0254 / 2
+                                                Dim Asec = .Comprimento / .Incrementos * .DE * 0.0254 / 2
+                                                Dim tflux = (Math.PI * (.DE * 0.0254) ^ 2 / 4) * .Comprimento / .Incrementos / ims.GetVolumetricFlow()
+                                                DQ += SR / tflux * Asec
+                                                DQmax += SR / tflux * Asec
                                             End If
                                             If Double.IsNaN(DQ) Then DQ = 0.0#
                                             If Math.Abs(DQ) > Math.Abs(DQmax) Then DQ = DQmax
