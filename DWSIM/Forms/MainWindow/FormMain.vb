@@ -194,7 +194,6 @@ Public Class FormMain
             Next
 
             tsmiFreeProTrial.Visible = Not IsPro
-            tsmiPrivateSupport.Visible = Not IsPro
 
 #If LINUX = False Then
             If IsPro Then
