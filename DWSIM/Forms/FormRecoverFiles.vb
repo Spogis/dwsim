@@ -50,7 +50,7 @@ Public Class FormRecoverFiles
 
         For Each row As DataGridViewRow In Me.Grid1.SelectedRows
             Try
-                If row.Cells(0).Value = 1 Then
+                If row.Cells(1).Value = 1 Then
                     Application.DoEvents()
                     FormMain.LoadAndExtractXMLZIP(New SharedClassesCSharp.FilePicker.Windows.WindowsFile(row.Cells(0).Value), Nothing)
                 End If
