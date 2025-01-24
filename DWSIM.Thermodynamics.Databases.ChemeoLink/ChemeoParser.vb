@@ -22,7 +22,11 @@ Public Class ChemeoParser
             Dim resultFilter = If(exact,
                 Function(x As Compound) String.Equals(x.Compound, searchstring, StringComparison.OrdinalIgnoreCase),
                 Function(x As Compound) True)
-            Return result.Comps.Where(resultFilter).Select(Function(x) New String() {x.Id, x.Compound}).ToList()
+            If result.Comps Is Nothing Then
+                Return New List(Of String())
+            Else
+                Return result.Comps.Where(resultFilter).Select(Function(x) New String() {x.Id, x.Compound}).ToList()
+            End If
         Else
             'do we want to report a failure?
             Return New List(Of String())

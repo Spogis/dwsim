@@ -89,8 +89,10 @@ Public Class FormImportCompoundOnline
                                                     Next
                                                     If t.Result.Count = 0 Then
                                                         btnNext.Enabled = False
+                                                        MessageBox.Show("Could not find matching compounds for the given search text.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                                                    Else
+                                                        btnNext.Enabled = True
                                                     End If
-                                                    btnNext.Enabled = True
                                                 Else
                                                     btnNext.Enabled = False
                                                     Dim msg = ExceptionProcessing.ExceptionParser.GetFirstException(t.Exception).Message
