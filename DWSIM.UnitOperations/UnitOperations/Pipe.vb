@@ -770,8 +770,8 @@ Namespace UnitOperations
                                             If Math.Abs(DQ) > Math.Abs(DQmax) Then DQ = DQmax
 
                                             results.Internal_Temperature = (Tout + Tin) / 2
-                                            results.Wall_Temperature = results.Internal_Temperature - DQ / (results.HTC_pipewall * Math.PI * (Math.Log(.DE / .DI) * .DI * 0.0254) * .Comprimento / .Incrementos)
-                                            results.Insulation_Temperature = results.Wall_Temperature - DQ / (results.HTC_insulation * Math.PI * (Math.Log((.DE + ThermalProfile.Espessura / 0.0254) / .DE) * .DE * 0.0254) * .Comprimento / .Incrementos)
+                                            results.Wall_Temperature = results.Internal_Temperature + DQ / (results.HTC_pipewall * Math.PI * (Math.Log(.DE / .DI) * .DI * 0.0254) * .Comprimento / .Incrementos)
+                                            results.Insulation_Temperature = results.Wall_Temperature + DQ / (results.HTC_insulation * Math.PI * (Math.Log((.DE + ThermalProfile.Espessura / 0.0254) / .DE) * .DE * 0.0254) * .Comprimento / .Incrementos)
 
                                         Else
                                             DQ = 0.0#
