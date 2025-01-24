@@ -752,7 +752,7 @@ Namespace UnitOperations
                                         If U <> 0.0# Then
                                             DQ = (Tout - Tin) / Math.Log((results.External_Temperature - Tin) / (results.External_Temperature - Tout)) * U / 1000 * A
                                             DQmax = (results.External_Temperature - Tin) * Cp_m * Win
-                                            Dim SR As Double
+                                            Dim SR, Qrad As Double
                                             If ThermalProfile.IncludeSolarRadiation Then
                                                 If ThermalProfile.UseGlobalSolarRadiation Then
                                                     SR = ThermalProfile.SolarRadiationAbsorptionEfficiency * FlowSheet.FlowsheetOptions.CurrentWeather.SolarIrradiation_kWh_m2
@@ -761,11 +761,18 @@ Namespace UnitOperations
                                                 End If
                                                 Dim Asec = .Comprimento / .Incrementos * .DE * 0.0254 / 2
                                                 Dim tflux = (Math.PI * (.DE * 0.0254) ^ 2 / 4) * .Comprimento / .Incrementos / ims.GetVolumetricFlow()
-                                                DQ += SR / tflux * Asec
-                                                DQmax += SR / tflux * Asec
+                                                Qrad = SR / tflux * Asec
+                                                DQ += Qrad
+                                                DQmax += Qrad
+                                                results.Absorbed_Radiation = Qrad
                                             End If
                                             If Double.IsNaN(DQ) Then DQ = 0.0#
                                             If Math.Abs(DQ) > Math.Abs(DQmax) Then DQ = DQmax
+
+                                            results.Internal_Temperature = (Tout + Tin) / 2
+                                            results.Wall_Temperature = results.Internal_Temperature - DQ / (results.HTC_pipewall * Math.PI * (Math.Log(.DE / .DI) * .DI * 0.0254) * .Comprimento / .Incrementos)
+                                            results.Insulation_Temperature = results.Wall_Temperature - DQ / (results.HTC_insulation * Math.PI * (Math.Log((.DE + ThermalProfile.Espessura / 0.0254) / .DE) * .DE * 0.0254) * .Comprimento / .Incrementos)
+
                                         Else
                                             DQ = 0.0#
                                             DQmax = 0.0#
@@ -904,7 +911,10 @@ Namespace UnitOperations
                                                                                                    .HTC_internal = results.HTC_internal,
                                                                                                    .HTC_insulation = results.HTC_insulation,
                                                                                                    .HTC_pipewall = results.HTC_pipewall,
-                                                                                                   .External_Temperature = results.External_Temperature})
+                                                                                                   .External_Temperature = results.External_Temperature,
+                                                                                                   .Insulation_Temperature = results.Insulation_Temperature,
+                                                                                                   .Wall_Temperature = results.Wall_Temperature,
+                                                                                                   .Absorbed_Radiation = results.Absorbed_Radiation})
 
                                 segmento.Results.Last.MachNumber = .VapVel / oms.Phases(2).Properties.speedOfSound.GetValueOrDefault()
 

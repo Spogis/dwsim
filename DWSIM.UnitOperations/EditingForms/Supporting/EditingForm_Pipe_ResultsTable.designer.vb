@@ -29,14 +29,6 @@ Partial Class EditingForm_Pipe_ResultsTable
         Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle11 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle12 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle13 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle14 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
         Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column14 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -54,6 +46,9 @@ Partial Class EditingForm_Pipe_ResultsTable
         Me.Column12 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column13 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column15 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column17 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column18 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column19 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -64,7 +59,6 @@ Partial Class EditingForm_Pipe_ResultsTable
         DataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke
         Me.DataGridView1.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
         Me.DataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells
-        Me.DataGridView1.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableAlwaysIncludeHeaderText
         DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
         DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control
         DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -73,17 +67,16 @@ Partial Class EditingForm_Pipe_ResultsTable
         DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
         DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
         Me.DataGridView1.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
-        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column1, Me.Column14, Me.Column2, Me.Column3, Me.Column4, Me.Column5, Me.Column16, Me.Column6, Me.Column7, Me.Column8, Me.Column9, Me.Column10, Me.Column11, Me.Column12, Me.Column13, Me.Column15})
+        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column1, Me.Column14, Me.Column2, Me.Column3, Me.Column4, Me.Column5, Me.Column16, Me.Column6, Me.Column7, Me.Column8, Me.Column9, Me.Column10, Me.Column11, Me.Column12, Me.Column13, Me.Column15, Me.Column17, Me.Column18, Me.Column19})
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.ReadOnly = True
         Me.DataGridView1.RowHeadersVisible = False
         Me.DataGridView1.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        Me.DataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.DataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
         '
         'Column1
         '
-        Me.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
-        DataGridViewCellStyle3.Format = "N2"
+        Me.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
         DataGridViewCellStyle3.NullValue = Nothing
         Me.Column1.DefaultCellStyle = DataGridViewCellStyle3
         Me.Column1.Frozen = True
@@ -101,7 +94,6 @@ Partial Class EditingForm_Pipe_ResultsTable
         '
         'Column2
         '
-        DataGridViewCellStyle4.Format = "N2"
         DataGridViewCellStyle4.NullValue = Nothing
         Me.Column2.DefaultCellStyle = DataGridViewCellStyle4
         resources.ApplyResources(Me.Column2, "Column2")
@@ -111,7 +103,6 @@ Partial Class EditingForm_Pipe_ResultsTable
         '
         'Column3
         '
-        DataGridViewCellStyle5.Format = "N2"
         DataGridViewCellStyle5.NullValue = Nothing
         Me.Column3.DefaultCellStyle = DataGridViewCellStyle5
         resources.ApplyResources(Me.Column3, "Column3")
@@ -121,8 +112,6 @@ Partial Class EditingForm_Pipe_ResultsTable
         '
         'Column4
         '
-        DataGridViewCellStyle6.Format = "N2"
-        Me.Column4.DefaultCellStyle = DataGridViewCellStyle6
         resources.ApplyResources(Me.Column4, "Column4")
         Me.Column4.Name = "Column4"
         Me.Column4.ReadOnly = True
@@ -130,8 +119,6 @@ Partial Class EditingForm_Pipe_ResultsTable
         '
         'Column5
         '
-        DataGridViewCellStyle7.Format = "N2"
-        Me.Column5.DefaultCellStyle = DataGridViewCellStyle7
         resources.ApplyResources(Me.Column5, "Column5")
         Me.Column5.Name = "Column5"
         Me.Column5.ReadOnly = True
@@ -146,8 +133,6 @@ Partial Class EditingForm_Pipe_ResultsTable
         '
         'Column6
         '
-        DataGridViewCellStyle8.Format = "N2"
-        Me.Column6.DefaultCellStyle = DataGridViewCellStyle8
         resources.ApplyResources(Me.Column6, "Column6")
         Me.Column6.Name = "Column6"
         Me.Column6.ReadOnly = True
@@ -169,9 +154,8 @@ Partial Class EditingForm_Pipe_ResultsTable
         '
         'Column9
         '
-        DataGridViewCellStyle9.Format = "N4"
-        DataGridViewCellStyle9.NullValue = Nothing
-        Me.Column9.DefaultCellStyle = DataGridViewCellStyle9
+        DataGridViewCellStyle6.NullValue = Nothing
+        Me.Column9.DefaultCellStyle = DataGridViewCellStyle6
         resources.ApplyResources(Me.Column9, "Column9")
         Me.Column9.Name = "Column9"
         Me.Column9.ReadOnly = True
@@ -179,8 +163,6 @@ Partial Class EditingForm_Pipe_ResultsTable
         '
         'Column10
         '
-        DataGridViewCellStyle10.Format = "N4"
-        Me.Column10.DefaultCellStyle = DataGridViewCellStyle10
         resources.ApplyResources(Me.Column10, "Column10")
         Me.Column10.Name = "Column10"
         Me.Column10.ReadOnly = True
@@ -188,8 +170,6 @@ Partial Class EditingForm_Pipe_ResultsTable
         '
         'Column11
         '
-        DataGridViewCellStyle11.Format = "N4"
-        Me.Column11.DefaultCellStyle = DataGridViewCellStyle11
         resources.ApplyResources(Me.Column11, "Column11")
         Me.Column11.Name = "Column11"
         Me.Column11.ReadOnly = True
@@ -197,8 +177,6 @@ Partial Class EditingForm_Pipe_ResultsTable
         '
         'Column12
         '
-        DataGridViewCellStyle12.Format = "N4"
-        Me.Column12.DefaultCellStyle = DataGridViewCellStyle12
         resources.ApplyResources(Me.Column12, "Column12")
         Me.Column12.Name = "Column12"
         Me.Column12.ReadOnly = True
@@ -206,8 +184,6 @@ Partial Class EditingForm_Pipe_ResultsTable
         '
         'Column13
         '
-        DataGridViewCellStyle13.Format = "G4"
-        Me.Column13.DefaultCellStyle = DataGridViewCellStyle13
         resources.ApplyResources(Me.Column13, "Column13")
         Me.Column13.Name = "Column13"
         Me.Column13.ReadOnly = True
@@ -215,12 +191,34 @@ Partial Class EditingForm_Pipe_ResultsTable
         '
         'Column15
         '
-        DataGridViewCellStyle14.Format = "N4"
-        Me.Column15.DefaultCellStyle = DataGridViewCellStyle14
+        Me.Column15.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
         resources.ApplyResources(Me.Column15, "Column15")
         Me.Column15.Name = "Column15"
         Me.Column15.ReadOnly = True
         Me.Column15.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        '
+        'Column17
+        '
+        Me.Column17.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        resources.ApplyResources(Me.Column17, "Column17")
+        Me.Column17.Name = "Column17"
+        Me.Column17.ReadOnly = True
+        Me.Column17.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        '
+        'Column18
+        '
+        Me.Column18.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        resources.ApplyResources(Me.Column18, "Column18")
+        Me.Column18.Name = "Column18"
+        Me.Column18.ReadOnly = True
+        Me.Column18.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        '
+        'Column19
+        '
+        resources.ApplyResources(Me.Column19, "Column19")
+        Me.Column19.Name = "Column19"
+        Me.Column19.ReadOnly = True
+        Me.Column19.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
         '
         'EditingForm_Pipe_ResultsTable
         '
@@ -249,4 +247,7 @@ Partial Class EditingForm_Pipe_ResultsTable
     Friend WithEvents Column12 As DataGridViewTextBoxColumn
     Friend WithEvents Column13 As DataGridViewTextBoxColumn
     Friend WithEvents Column15 As DataGridViewTextBoxColumn
+    Friend WithEvents Column17 As DataGridViewTextBoxColumn
+    Friend WithEvents Column18 As DataGridViewTextBoxColumn
+    Friend WithEvents Column19 As DataGridViewTextBoxColumn
 End Class

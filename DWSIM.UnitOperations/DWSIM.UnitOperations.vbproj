@@ -1898,6 +1898,7 @@
     <Content Include="linked_table.png" />
     <Content Include="master_table.png" />
     <Content Include="property_table.png" />
+    <None Include="Resources\DWSIM Icon 4.ico" />
     <Content Include="table.png" />
     <Content Include="table_80px.png" />
   </ItemGroup>

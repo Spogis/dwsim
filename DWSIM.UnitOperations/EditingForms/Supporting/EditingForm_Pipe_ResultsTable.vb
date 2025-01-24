@@ -28,6 +28,9 @@ Public Class EditingForm_Pipe_ResultsTable
             .Item(13).HeaderText += " (" & su.heat_transf_coeff & ")"
             .Item(14).HeaderText += " (" & su.heat_transf_coeff & ")"
             .Item(15).HeaderText += " (" & su.temperature & ")"
+            .Item(16).HeaderText += " (" & su.temperature & ")"
+            .Item(17).HeaderText += " (" & su.temperature & ")"
+            .Item(18).HeaderText += " (" & su.heatflow & ")"
         End With
 
         Dim nf As String = PipeOp.FlowSheet.FlowsheetOptions.NumberFormat
@@ -55,7 +58,10 @@ Public Class EditingForm_Pipe_ResultsTable
                                                   cv.ConvertFromSI(su.heat_transf_coeff, res.HTC_pipewall).ToString(nf),
                                                   cv.ConvertFromSI(su.heat_transf_coeff, res.HTC_insulation).ToString(nf),
                                                   cv.ConvertFromSI(su.heat_transf_coeff, res.HTC_external).ToString(nf),
-                                                  res.External_Temperature.ConvertFromSI(su.temperature).ToString(nf)})
+                                                  res.External_Temperature.ConvertFromSI(su.temperature).ToString(nf),
+                                                  res.Wall_Temperature.ConvertFromSI(su.temperature).ToString(nf),
+                                                  res.Insulation_Temperature.ConvertFromSI(su.temperature).ToString(nf),
+                                                  res.Absorbed_Radiation.ConvertFromSI(su.heatflow).ToString(nf)})
                         comp_ant += ps.Comprimento / ps.Incrementos
                     Next
                 Else

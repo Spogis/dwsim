@@ -499,4 +499,38 @@ Public Class EditingForm_Pipe
     Private Sub nupCalculateEquilibrium_ValueChanged(sender As Object, e As EventArgs) Handles nupCalculateEquilibrium.ValueChanged
         If Loaded Then SimObject.CalculateEquilibriumIntervalInSteps = nupCalculateEquilibrium.Value
     End Sub
+
+    Private Sub Button2_Click_1(sender As Object, e As EventArgs) Handles Button2.Click
+
+        Dim heditor As New EditingForm_Pipe_ResultsTable With {.PipeOp = Me.SimObject}
+        heditor.Dock = DockStyle.Fill
+
+        Dim form As New WeifenLuo.WinFormsUI.Docking.DockContent With {.ShowHint = WeifenLuo.WinFormsUI.Docking.DockState.Document,
+            .Text = SimObject.GraphicObject.Tag + " - Results",
+            .TabText = .Text,
+            .Icon = My.Resources.DWSIM_Icon_4}
+
+        form.Controls.Add(heditor)
+
+        SimObject.FlowSheet.DisplayForm(form)
+
+    End Sub
+
+    Private Sub Button3_Click_1(sender As Object, e As EventArgs) Handles Button3.Click
+
+        Dim heditor As New EditingForm_Pipe_ResultsChart With {.PipeOp = Me.SimObject}
+        heditor.Dock = DockStyle.Fill
+
+        Dim form As New WeifenLuo.WinFormsUI.Docking.DockContent With {.ShowHint = WeifenLuo.WinFormsUI.Docking.DockState.Document,
+            .Text = SimObject.GraphicObject.Tag + " - Results",
+            .TabText = .Text,
+            .Icon = My.Resources.DWSIM_Icon_4}
+
+        form.Controls.Add(heditor)
+
+        SimObject.FlowSheet.DisplayForm(form)
+
+
+    End Sub
+
 End Class

@@ -1,10 +1,10 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class EditingForm_Pipe
 
     Inherits SharedClasses.ObjectEditorForm
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -21,7 +21,7 @@ Partial Class EditingForm_Pipe
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(EditingForm_Pipe))
@@ -92,6 +92,8 @@ Partial Class EditingForm_Pipe
         Me.TabPage2 = New System.Windows.Forms.TabPage()
         Me.TabPage3 = New System.Windows.Forms.TabPage()
         Me.ToolTipChangeTag = New System.Windows.Forms.ToolTip(Me.components)
+        Me.Button2 = New System.Windows.Forms.Button()
+        Me.Button3 = New System.Windows.Forms.Button()
         Me.GroupBox5.SuspendLayout()
         Me.GroupBoxParameters.SuspendLayout()
         Me.TabControl1.SuspendLayout()
@@ -733,10 +735,30 @@ Partial Class EditingForm_Pipe
         Me.ToolTipChangeTag.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info
         Me.ToolTipChangeTag.ToolTipTitle = "Info"
         '
+        'Button2
+        '
+        resources.ApplyResources(Me.Button2, "Button2")
+        Me.Button2.Name = "Button2"
+        Me.ToolTip1.SetToolTip(Me.Button2, resources.GetString("Button2.ToolTip"))
+        Me.ToolTipChangeTag.SetToolTip(Me.Button2, resources.GetString("Button2.ToolTip1"))
+        Me.ToolTipValues.SetToolTip(Me.Button2, resources.GetString("Button2.ToolTip2"))
+        Me.Button2.UseVisualStyleBackColor = True
+        '
+        'Button3
+        '
+        resources.ApplyResources(Me.Button3, "Button3")
+        Me.Button3.Name = "Button3"
+        Me.ToolTip1.SetToolTip(Me.Button3, resources.GetString("Button3.ToolTip"))
+        Me.ToolTipChangeTag.SetToolTip(Me.Button3, resources.GetString("Button3.ToolTip1"))
+        Me.ToolTipValues.SetToolTip(Me.Button3, resources.GetString("Button3.ToolTip2"))
+        Me.Button3.UseVisualStyleBackColor = True
+        '
         'EditingForm_Pipe
         '
         resources.ApplyResources(Me, "$this")
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi
+        Me.Controls.Add(Me.Button3)
+        Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.GroupBoxResults)
         Me.Controls.Add(Me.GroupBoxConnections)
         Me.Controls.Add(Me.GroupBox5)
@@ -825,4 +847,6 @@ Partial Class EditingForm_Pipe
     Friend WithEvents Label21 As Label
     Friend WithEvents nupCalculateEquilibrium As NumericUpDown
     Friend WithEvents chkCalculateEquilibrium As CheckBox
+    Friend WithEvents Button2 As Button
+    Friend WithEvents Button3 As Button
 End Class
