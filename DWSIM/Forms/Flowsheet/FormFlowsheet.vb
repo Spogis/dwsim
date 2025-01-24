@@ -245,6 +245,10 @@ Public Class FormFlowsheet
             tsmiDetailedReport.Visible = False
         End If
 
+#If DEBUG Then
+        ConvergenceHelperSettingsToolStripMenuItem.Visible = True
+#End If
+
         FormCharts.Flowsheet = Me
         FormSpreadsheet.Flowsheet = Me
         FormDynamics.Flowsheet = Me
